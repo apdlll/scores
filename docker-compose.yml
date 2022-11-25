@@ -1,0 +1,10 @@
+version: "3"
+name: scores
+services:
+  scores:
+    build: .
+    image: scores
+    command: sh
+    volumes:
+      - ./src:/app/src:ro
+      - ./build:/app/build:rw
