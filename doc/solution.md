@@ -87,7 +87,7 @@ data class Score (val player: String, val points: Int)
 
 </details>
 
-The logic calculating the scores basically maps pairs of `<player name, game score>` and aggregates the scores by player. There is a dependency between the player final game score and the extra points given to game winners. That interdependency can be broken if the logic calculating the winners emits their own pairs `<winner player name, win points>` and then aggregate them together with the pairs emitted by the other logic calculating the player personal score. That might be useful in a distributed processing scenario, but for a single CPU solution it is simpler to (1st) obtain the winner team and (2nd) compute the players' score adding the extra points if played for that team. The top-down division of the work is:
+The logic calculating the scores basically maps pairs of `<player name, game score>` and aggregates the scores by player. There is a dependency between the player final game score and the extra points given to game winners. That interdependency can be removed if the logic calculating the winners emits their own pairs `<winner player name, win points>` and then aggregate them together with the pairs emitted by the other logic calculating the player personal score. That might be useful in a distributed processing scenario, but for a single CPU solution it is simpler to (1st) obtain the winner team and (2nd) compute the players' score adding the extra points if played for that team. The top-down division of the work is:
 
 1. A function to emit players' scores from all games and aggregate them by player's name
 2. A function to calculate the player personal score (for 1)
