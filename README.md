@@ -16,11 +16,10 @@ This is a [programming exercise](doc/exercise.md) implemented in Kotlin using th
 <details>
   <summary>⚠️️ <b>NOTE:</b> <i>If you want to create the image and the container manually...</i></summary>
 
-* To manually create the image and the container:
-  ```shell
-  docker build -t scores .
-  docker run --name scores -it -v `pwd`/src:/app/src:ro -v `pwd`/build:/app/build:rw scores sh
-  ```
+```shell
+docker build -t scores .
+docker run --name scores -it -v `pwd`/src:/app/src:ro -v `pwd`/build:/app/build:rw scores sh
+```
 * To start an exited container: `docker start -ai scores`
 * To delete the container: `docker rm scores`
 * To delete the image: `docker image rm scores`
@@ -69,7 +68,7 @@ This is a [programming exercise](doc/exercise.md) implemented in Kotlin using th
 
 ### Distribution
 * To generate the distribution file: `./gradlew assemble`
-  * ZIP bundle generated at: `./build/distributions/`
+  * TAR file generated at: `./build/distributions/`
   * To install and run from the distribution files:
     ```shell
     tar xvf scores-1.0.tar 
