@@ -95,3 +95,5 @@ These are the scores for the previous games' data:
 | Hodor  |   8   |
 | Jaime  |  11   |
 | Arya   |  18   |
+
+Go to the [solution](solution.md)

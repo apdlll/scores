@@ -14,7 +14,7 @@ This is a [programming exercise](doc/exercise.md) implemented in Kotlin using th
    ```
 ---
 <details>
-  <summary>⚠️️ <b>NOTE:</b> <i>If you want to create the image and the container manually, click here</i></summary>
+  <summary>⚠️️ <b>NOTE:</b> <i>If you want to create the image and the container manually...</i></summary>
 
 * To manually create the image and the container:
   ```shell
@@ -50,7 +50,7 @@ This is a [programming exercise](doc/exercise.md) implemented in Kotlin using th
 * To fix style issues automatically: `./gradlew fixstyle`
 
 ### Code analysis
-* To analyze code complexity and smells: `./gradlew checkcode`
+* To analyze code smells and complexity: `./gradlew checkcode`
   * Reports generated at: `./build/reports/code/`
 * To customize rules: `./gradlew detektGenerateConfig`
   * Config file generated at: `./config/detekt/detekt.yml`

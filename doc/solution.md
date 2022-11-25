@@ -2,7 +2,7 @@
 
 It is a command line program accepting a single parameter with the path to the CSV files directory containing:
 * The files with the players' stats in each game using this filename pattern: `<GAME_NAME>.players`
-  * Their contents are the ones described in the exercise ([example](../src/test/resources/tournament1/PAINTBALL.players))
+  * Their contents are the ones described in the [exercise](exercise.md) ([example](../src/test/resources/tournament1/PAINTBALL.players))
 * The files with the games' points given in each game using this filename pattern: `<GAME_NAME>.points`
   * Their contents are: `position;win points;stat1 points;stat2 points;...` ([example](../src/test/resources/tournament1/PAINTBALL.points))
 
@@ -17,7 +17,7 @@ sequenceDiagram
     participant Read
     participant Calc
     participant Write
-    Note over Read,Write: 1. Success case
+    Note over Read,Write: Success case
     activate Read
     Read->>Calc: List<Game>
     deactivate Read
@@ -26,13 +26,13 @@ sequenceDiagram
     deactivate Calc
     activate Write
     deactivate Write
-    Note over Read,Write: 2. Read error case
+    Note over Read,Write: Read error case
     activate Read 
     Read->>Write: Throwable
     deactivate Read
     activate Write
     deactivate Write
-    Note over Read,Write: 3. Calc error case    
+    Note over Read,Write: Calc error case    
     activate Read 
     Read->>Calc: List<Game>
     deactivate Read
@@ -41,7 +41,7 @@ sequenceDiagram
     deactivate Calc
     activate Write
     deactivate Write
-    Note over Read,Write: 4. Write error case
+    Note over Read,Write: Write error case
     activate Read 
     Read->>Calc: List<Game>
     deactivate Read
@@ -60,7 +60,7 @@ sequenceDiagram
 ./scores [--impl package.ImplClass] [impl params]
 ```
 
-New implementations can be added to the [`apdlll.scores.impl` package](../src/main/kotlin/apdlll/scores/impl). By default, the program will use [`apdlll.scores.impl.def.ScoresDefaultImpl`](../src/main/kotlin/apdlll/scores/impl/def/ScoresDefaultImpl.kt):
+New implementations can be added to the `apdlll.scores.impl` package. By default, the program will use [`apdlll.scores.impl.def.ScoresDefaultImpl`](../src/main/kotlin/apdlll/scores/impl/def/ScoresDefaultImpl.kt):
 
 ```shell
 ./scores --impl apdlll.scores.impl.def.ScoresDefaultImpl [csv-files-dir]
@@ -72,10 +72,10 @@ New implementations can be added to the [`apdlll.scores.impl` package](../src/ma
 
 ## Implementation
 
-The default implementation of the [`ReadInterface`](../src/main/kotlin/apdlll/scores/impl/def/CsvFilesReadImpl.kt) and [`WriteInterface`](../src/main/kotlin/apdlll/scores/impl/def/StdOutJsonWriteImpl.kt) can be easily done using a CSV library to read the games' data and a JSON library to write the scores, but in this project no external dependencies are used, so specialized [CSV readers](../src/main/kotlin/apdlll/scores/reader) for games and some [JSON write functions](../src/main/kotlin/apdlll/scores/writer/JsonWriteExtensions.kt) for scores and errors have been added.
+The default implementation of the [`ReadInterface`](../src/main/kotlin/apdlll/scores/impl/def/CsvFilesReadImpl.kt) and [`WriteInterface`](../src/main/kotlin/apdlll/scores/impl/def/StdOutJsonWriteImpl.kt) can be easily done using a CSV library to read the games' data and a JSON library to write the scores, but in this project no external dependencies are used, so specialized [CSV readers](../src/main/kotlin/apdlll/scores/reader/csv) for games and some [JSON write functions](../src/main/kotlin/apdlll/scores/writer/JsonWriteExtensions.kt) for scores and errors have been added.
 
 <details>
-  <summary>This is the model used to hold the data exchanged between the read, calc and write interfaces.</summary>
+  <summary>This is the model used to hold the data exchanged between the read, calc and write interfaces...</summary>
 
 ```kotlin
 data class Player(val name: String, val team: String,
@@ -96,7 +96,7 @@ The logic calculating the scores basically maps pairs of `<player name, game sco
 5. A function to obtain the player contribution to the team score (for 4)
 
 <details>
-  <summary>This is the implementation of the previous functions.</summary>
+  <summary>This is the implementation of the previous functions...</summary>
 
 ```kotlin
 fun getPlayerTeamScore(player: Player, game: Game) =
@@ -132,7 +132,7 @@ fun calculateScores(gamesData: List<Game>) = gamesData.flatMap { game ->
 </details>
 
 <details>
-  <summary>This test uses the exercise's example data, and you can run it online in the <a href="https://pl.kotl.in/Uij68uwer" target="_blank">↪Kotlin playground</a></summary>
+  <summary>This is a test using the exercise's description samples, and you can run it online in the <a href="https://pl.kotl.in/Uij68uwer" target="_blank">Kotlin playground</a>...</summary>
 
 ```kotlin
 val paintballWinPoints = 10
