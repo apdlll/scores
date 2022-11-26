@@ -1,0 +1,17 @@
+# Please see the documentation for all configuration options:
+# https://docs.github.com/github/administering-a-repository/configuration-options-for-dependency-updates
+
+version: 2
+registries:
+  mavenCentral:
+    type: maven-repository
+    url: https://repo1.maven.org/maven2
+    username: dependabot
+    password: dependabot
+updates:
+  - package-ecosystem: "gradle"
+    directory: "/"
+    schedule:
+      interval: "daily"
+    registries:
+      - mavenCentral
