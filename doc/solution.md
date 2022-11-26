@@ -46,7 +46,7 @@ sequenceDiagram
     Read->>Calc: List<Game>
     deactivate Read
     activate Calc
-    Calc->>Write: List<Score>
+    Calc->>Write: Set<Score>
     deactivate Calc
     activate Write
     Write->>Write: Throwable
