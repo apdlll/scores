@@ -14,7 +14,8 @@ This is a [programming exercise](doc/exercise.md) implemented in Kotlin using th
    ```
 ---
 <details>
-  <summary>⚠️️ <b>NOTE:</b> <i>If you want to create the image and the container manually...</i></summary>
+  <summary>📝️️️️ <b>NOTE:</b> <i>If you want to create the image and the container manually...</i></summary>
+
 
 ```shell
 docker build -t scores .
