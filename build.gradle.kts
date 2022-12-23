@@ -9,7 +9,7 @@ plugins {
     jacoco
     kotlin("jvm") version "1.7.20"
     id("org.jlleitschuh.gradle.ktlint") version "11.0.0"
-    id("io.gitlab.arturbosch.detekt") version "1.21.0"
+    id("io.gitlab.arturbosch.detekt") version "1.22.0"
     id("org.owasp.dependencycheck") version "latest.release"
     id("org.jetbrains.dokka") version "1.7.20"
     id("com.github.ben-manes.versions") version "latest.release"
