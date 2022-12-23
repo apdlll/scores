@@ -1,9 +1,9 @@
 # Solution
 
-It is a command line program accepting a single parameter with the path to the CSV files directory containing:
-* The files with the players' stats in each game using this filename pattern: `<GAME_NAME>.players`
+Command line program accepting a single parameter with the path to the CSV files directory containing:
+* The files with the players' stats in each game, they have this filename pattern: `<GAME_NAME>.players`
   * Their contents are the ones described in the [exercise](exercise.md) ([example](../src/test/resources/tournament1/PAINTBALL.players))
-* The files with the games' points given in each game using this filename pattern: `<GAME_NAME>.points`
+* The files with the points given for each position in a game, they have this filename pattern: `<GAME_NAME>.points`
   * Their contents are: `position;win points;stat1 points;stat2 points;...` ([example](../src/test/resources/tournament1/PAINTBALL.points))
 
 The program supports any number of games (files) and game stats (columns). The calculated scores are printed to STDOUT in JSON format so that they can be later processed by other programs. In the case of errors, they are printed to STDERR as JSON.
@@ -87,13 +87,13 @@ data class Score (val player: String, val points: Int)
 
 </details>
 
-The logic calculating the scores basically maps pairs of `<player name, game score>` and aggregates the scores by player. There is a dependency between the player final game score and the extra points given to game winners. That interdependency can be removed if the logic calculating the winners emits their own pairs `<winner player name, win points>` and then aggregate them together with the pairs emitted by the other logic calculating the player personal score. That might be useful in a distributed processing scenario, but for a single CPU solution it is simpler to (1st) obtain the winner team and (2nd) compute the players' score adding the extra points if played for that team. The top-down division of the work is:
+The logic calculating the scores basically maps pairs of `<player name, game score>` and aggregates the scores by player. There is a dependency between the player final game score and the extra points given to game winners. That interdependency can be removed if the logic calculating the winners emits their own pairs `<winner player name, win points>` and then they can be aggregated together with the pairs emitted by the other logic calculating the player personal score. That might be useful in a distributed processing scenario, but for a single CPU solution it is simpler to (1st) obtain the winner team and (2nd) compute the players' score adding the extra points if played for that team. The top-down division of the work is:
 
-1. A function to emit players' scores from all games and aggregate them by player's name
-2. A function to calculate the player personal score (for 1)
-3. A function to obtain the winner team of a game (for 2)
-4. A function to compute teams scores in the game (for 3)
-5. A function to obtain the player contribution to the team score (for 4)
+1. A function to produce the players' scores from all games and aggregate them by player's name
+2. A function to calculate the player personal score (for #1)
+3. A function to obtain the winner team of a game (for #2)
+4. A function to compute teams scores in the game (for #3)
+5. A function to obtain the player contribution to the team score (for #4)
 
 <details>
   <summary>This is the implementation of the previous functions...</summary>
@@ -132,7 +132,7 @@ fun calculateScores(gamesData: List<Game>) = gamesData.flatMap { game ->
 </details>
 
 <details>
-  <summary>This is a test using the exercise's description samples, and you can run it online in the <a href="https://pl.kotl.in/Uij68uwer" target="_blank">Kotlin playground</a>...</summary>
+  <summary>This is a test that uses the exercise's description samples. You can run it online in the <a href="https://pl.kotl.in/Uij68uwer" target="_blank">Kotlin playground</a>...</summary>
 
 ```kotlin
 val paintballWinPoints = 10

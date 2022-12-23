@@ -16,7 +16,6 @@ This is a [programming exercise](doc/exercise.md) implemented in Kotlin using th
 <details>
   <summary>📝️️️️ <b>NOTE:</b> <i>If you want to create the image and the container manually...</i></summary>
 
-
 ```shell
 docker build -t scores .
 docker run --name scores -it -v `pwd`/src:/app/src:ro -v `pwd`/build:/app/build:rw scores sh
@@ -41,7 +40,7 @@ docker run --name scores -it -v `pwd`/src:/app/src:ro -v `pwd`/build:/app/build:
 * To run integration tests: `./gradlew inttest`
 
 ### Coverage
-* To check tests coverage reports: `./gradlew coverage`
+* To generate coverage reports: `./gradlew coverage`
   * Reports generated at: `./build/reports/cover/`
 
 ### Style
