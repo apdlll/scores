@@ -7,7 +7,7 @@ java.sourceCompatibility = JavaVersion.toVersion(javaVersion)
 plugins {
     application
     jacoco
-    kotlin("jvm") version "1.7.22"
+    kotlin("jvm") version "1.8.10"
     id("org.jlleitschuh.gradle.ktlint") version "11.0.0"
     id("io.gitlab.arturbosch.detekt") version "1.22.0"
     id("org.owasp.dependencycheck") version "7.4.3"
